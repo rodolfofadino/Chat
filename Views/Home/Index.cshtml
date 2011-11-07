@@ -1,0 +1,33 @@
+﻿@model DemoChat.Models.Home
+@{
+    ViewBag.Title = "Home Chat";
+}
+<h2>
+    Chat</h2>
+<p>
+    Nome:<input type="text" name="txtNome" id="txtNome" />
+</p>
+<p>
+    Mensagem:<br />
+    <input type="text" name="txtMensagem" id="txtMensagem" />
+    <input id="btnEnviar" type="submit" value="enviar" /><br />
+</p>
+<ul id="chatList">
+    @foreach (var msg in Model.Mensagens)
+    { 
+        <li>
+            <p style="margin-bottom: -2px; color: black;">
+                <strong>@msg.Usuario.Nome</strong>
+            </p>
+            <p>@msg.Conteudo</p>
+        </li>
+    }
+</ul>
+<!-- jQuery Template novas mensagens -->
+<script id="msgTmpl" type="text/x-jquery-tmpl">
+    <li><p style="margin-bottom:-2px; color: black;"><strong>${Usuario.Nome}</strong></p><p>${Conteudo}</p></li>
+</script>
+
+<script src="@Url.Content("~/Scripts/jquery.tmpl.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/chat.js")" type="text/javascript"></script>
+
